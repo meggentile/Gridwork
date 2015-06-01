@@ -1,0 +1,44 @@
+@import "mixins";
+@import "variables";
+
+//Base
+*,
+*:before,
+*:after {
+	margin: 0;
+	padding: 0;
+	@include border-box;
+}
+
+img {
+	width: auto;
+	max-width: 100%;
+	height: auto !important;
+}
+
+//Wrapper
+.wrapper {
+	width: 100%;
+	margin: 0 auto;
+}
+
+//Clearfix on wrapper and rows
+.wrapper:after,
+.row:after {
+	@extend %clearfix;
+}
+
+//Columns
+[class*='column-'] {
+	float: left;
+	padding: 1em;
+	width: 100%;
+	min-height: 1px;
+}
+
+//Columns loop
+@for $i from 1 through $grid-columns {
+	.column-#{$i} {
+		width: 100% / $grid-columns * $i;
+	}
+}
